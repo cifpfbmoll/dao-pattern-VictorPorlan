@@ -42,4 +42,8 @@ public class Espada {
     public void afilar(){
         setAfilada(true);
     }
+
+    public void atacar(){
+        setAfilada(false);
+    }
 }

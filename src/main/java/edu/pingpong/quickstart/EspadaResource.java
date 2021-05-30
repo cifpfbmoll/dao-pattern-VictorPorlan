@@ -47,4 +47,10 @@ public class EspadaResource {
     public Espada afilarEspada(@PathParam("nombre")String nombre){
         return service.afilarEspadaNombre(nombre);
     }
+
+    @GET
+    @Path("/atacar/{nombre}")
+    public Espada atacarEspada(@PathParam("nombre")String nombre){
+        return service.atacarEsapadaNombre(nombre);
+    }
 }

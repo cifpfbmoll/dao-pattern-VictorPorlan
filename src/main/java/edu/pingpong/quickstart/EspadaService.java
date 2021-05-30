@@ -29,7 +29,9 @@ public class EspadaService {
     public Espada afilarEspadaNombre(String nombre){
         return repository.afilarEspadaNombre(nombre);
     }
-
+    public Espada atacarEsapadaNombre(String nombre){
+        return repository.atacarEspadaNombre(nombre);
+    }
     public List<Espada> getListaEspada(){
         return repository.getListaEspada();
     }

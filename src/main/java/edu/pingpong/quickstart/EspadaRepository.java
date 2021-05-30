@@ -26,9 +26,19 @@ public class EspadaRepository implements PanacheRepository<Espada>{
         return listAll();
     }
 
+    @Transactional
     public Espada afilarEspadaNombre(String nombre){
-        find("nombre",nombre).firstResult().afilar();
-        return find("nombre",nombre).firstResult();
+        Espada espada = find("nombre",nombre).firstResult();
+        espada.afilar();
+        persist(espada);
+        return espada;
+    };
+    @Transactional
+    public Espada atacarEspadaNombre(String nombre){
+        Espada espada = find("nombre",nombre).firstResult();
+        espada.atacar();
+        persist(espada);
+        return espada;
     };
 
     public List<Espada> getListaEspada(){
