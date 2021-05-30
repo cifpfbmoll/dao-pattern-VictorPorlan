@@ -3,6 +3,7 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
+import java.util.Optional;
 
 @Path("/espadas")
 public class EspadaResource {
@@ -13,14 +14,14 @@ public class EspadaResource {
     @GET
     @Path("/{nombre}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Espada getEspadaNombre(@PathParam("nombre") String nombre) {
+    public Optional<Espada> getEspadaNombre(@PathParam("nombre") String nombre) {
         return service.getEspadaNombre(nombre);
     }
 
     @GET
     @Path("/{longitud}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Espada getEspadaLongitud(@PathParam("longitud") Float longitud) {
+    public Optional<Espada> getEspadaLongitud(@PathParam("longitud") Float longitud) {
         return service.getEspadaLongitud(longitud);
     }
 
@@ -30,10 +31,12 @@ public class EspadaResource {
     public Espada postEspada(Espada espada){
         return service.postEspada(espada);
     }
+
     @DELETE
+    @Path("/{nombre}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public List<Espada> deleteEspada(Espada espada){
-        return service.deleteEspada(espada);
+    public List<Espada> deleteEspada(@PathParam("nombre")String nombre){
+        return service.deleteEspada(nombre);
     }
 
     @GET

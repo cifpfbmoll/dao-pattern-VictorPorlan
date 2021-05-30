@@ -3,6 +3,7 @@ import javax.inject.Inject;
 
 import javax.enterprise.context.ApplicationScoped;
 import java.util.List;
+import java.util.Optional;
 
 @ApplicationScoped
 public class EspadaService {
@@ -14,16 +15,16 @@ public class EspadaService {
         return espada;
     }
 
-    public Espada getEspadaNombre(String nombre){
+    public Optional<Espada> getEspadaNombre(String nombre){
         return repository.getEspadaNombre(nombre);
     }
 
-    public Espada getEspadaLongitud(Float longitud){
+    public Optional<Espada> getEspadaLongitud(Float longitud){
         return repository.getEspadaLongitud(longitud);
     }
 
-    public List<Espada> deleteEspada(Espada espada){
-        return repository.deleteEspada(espada);
+    public List<Espada> deleteEspada(String nombre){
+        return repository.deleteEspada(nombre);
     }
 
     public Espada afilarEspadaNombre(String nombre){

@@ -3,6 +3,7 @@ import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @ApplicationScoped
 public class EspadaRepository implements PanacheRepository<Espada>{
@@ -13,16 +14,16 @@ public class EspadaRepository implements PanacheRepository<Espada>{
         return espada;
     }
 
-    public Espada getEspadaNombre(String nombre){
-        return find("nombre",nombre).firstResult();
+    public Optional<Espada> getEspadaNombre(String nombre){
+        return find("nombre",nombre).firstResultOptional();
     }
 
-    public Espada getEspadaLongitud(Float longitud){
-        return find("longitud", longitud).firstResult();
+    public Optional<Espada> getEspadaLongitud(Float longitud){
+        return find("longitud", longitud).firstResultOptional();
     }
     @Transactional
-    public List<Espada> deleteEspada(Espada espada){
-        delete(espada);
+    public List<Espada> deleteEspada(String nombre){
+        delete(find("nombre", nombre).firstResult());
         return listAll();
     }
 
